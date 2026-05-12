@@ -6,23 +6,47 @@ import { useRouter } from "next/navigation";
 export default function ConsultationPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    type: "매도",
+    transactionType: "매도",
     propertyType: "아파트",
     name: "",
     phone: "",
-    address: "",
-    content: "",
-    agree: false,
+    location: "",
+    details: "",
+    privacyAgreed: false,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.agree) {
-      alert("개인정보 수집 및 이용에 동의해주세요.");
+    setSubmitError("");
+
+    if (!formData.privacyAgreed) {
+      setSubmitError("개인정보 수집 및 이용에 동의해주세요.");
       return;
     }
-    // Proceed to completion page
-    router.push("/completion");
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/consulting", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Consulting submission failed");
+      }
+
+      router.push("/completion");
+    } catch {
+      setSubmitError("제출에 실패했습니다. 잠시 후 다시 시도해주세요.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -42,9 +66,9 @@ export default function ConsultationPage() {
                 <button
                   key={t}
                   type="button"
-                  onClick={() => setFormData({ ...formData, type: t })}
+                  onClick={() => setFormData({ ...formData, transactionType: t })}
                   className={`py-4 rounded-xl text-center font-bold transition-colors border ${
-                    formData.type === t 
+                    formData.transactionType === t 
                       ? "bg-primary text-white border-primary shadow-md" 
                       : "bg-muted/30 text-foreground/70 border-transparent hover:bg-muted"
                   }`}
@@ -86,8 +110,8 @@ export default function ConsultationPage() {
                 type="text"
                 id="address"
                 required
-                value={formData.address}
-                onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                value={formData.location}
+                onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                 placeholder="예: 강동구 길동 월드파크 2단지"
                 className="w-full p-4 bg-muted/20 border border-muted rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-base"
               />
@@ -128,8 +152,8 @@ export default function ConsultationPage() {
             <textarea
               id="content"
               rows={4}
-              value={formData.content}
-              onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+              value={formData.details}
+              onChange={(e) => setFormData({ ...formData, details: e.target.value })}
               placeholder="자세히 적어주실수록 정확한 상담이 가능합니다."
               className="w-full p-4 bg-muted/20 border border-muted rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none text-base"
             ></textarea>
@@ -141,18 +165,25 @@ export default function ConsultationPage() {
               <input
                 type="checkbox"
                 required
-                checked={formData.agree}
-                onChange={(e) => setFormData({ ...formData, agree: e.target.checked })}
+                checked={formData.privacyAgreed}
+                onChange={(e) => setFormData({ ...formData, privacyAgreed: e.target.checked })}
                 className="mt-1 w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary accent-primary"
               />
               <span className="text-sm text-foreground/80 font-medium leading-relaxed">개인정보 수집 및 이용에 동의합니다.<br/>(상담 목적으로만 안전하게 사용되며 외부 공개되지 않습니다.)</span>
             </label>
 
+            {submitError && (
+              <p className="mb-4 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-semibold text-red-600" role="alert">
+                {submitError}
+              </p>
+            )}
+
             <button
               type="submit"
-              className="w-full py-5 bg-primary text-white font-bold text-lg rounded-xl hover:bg-primary/90 transition-colors shadow-md flex justify-center items-center gap-2"
+              disabled={isSubmitting}
+              className="w-full py-5 bg-primary text-white font-bold text-lg rounded-xl hover:bg-primary/90 transition-colors shadow-md flex justify-center items-center gap-2 disabled:cursor-not-allowed disabled:opacity-70"
             >
-              무료 상담 신청하기
+              {isSubmitting ? "제출 중입니다..." : "무료 상담 신청하기"}
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
             <p className="text-center text-sm text-foreground/50 mt-4">신청 후 24시간 내에 홍길동 대표가 직접 연락드립니다.</p>
