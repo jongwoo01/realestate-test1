@@ -6,6 +6,11 @@ const nextSteps = [
   "상담 방향 정리 후 연락",
 ];
 
+const responseNotes = [
+  "희망 일정이 급한 접수는 먼저 확인합니다.",
+  "추가 확인이 필요한 경우 문자나 전화로 보완 질문을 드립니다.",
+];
+
 export default function CompletionPage() {
   return (
     <div className="py-20 px-6 max-w-2xl mx-auto text-center flex flex-col items-center justify-center min-h-[60vh]">
@@ -33,6 +38,17 @@ export default function CompletionPage() {
             </li>
           ))}
         </ol>
+        <div className="mt-5 rounded-xl bg-muted/40 p-4">
+          <h3 className="mb-2 text-sm font-bold text-primary">상담 전 확인 안내</h3>
+          <ul className="space-y-2 text-sm text-foreground/70">
+            {responseNotes.map((note) => (
+              <li key={note} className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true"></span>
+                <span>{note}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       
       <div className="bg-muted/30 w-full p-8 rounded-2xl border border-muted mb-12">
