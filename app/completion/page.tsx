@@ -11,6 +11,11 @@ const responseNotes = [
   "추가 확인이 필요한 경우 문자나 전화로 보완 질문을 드립니다.",
 ];
 
+const contactWindows = [
+  { label: "평일", value: "오전 10시 - 오후 7시" },
+  { label: "토요일", value: "오전 10시 - 오후 4시" },
+];
+
 export default function CompletionPage() {
   return (
     <div className="py-20 px-6 max-w-2xl mx-auto text-center flex flex-col items-center justify-center min-h-[60vh]">
@@ -54,6 +59,14 @@ export default function CompletionPage() {
       <div className="bg-muted/30 w-full p-8 rounded-2xl border border-muted mb-12">
         <h3 className="font-bold text-primary mb-4 text-lg">당장 빠른 답변이 필요하신가요?</h3>
         <p className="text-foreground/80 text-sm mb-6">아래 연락처로 문의주시면 더욱 빠르게 상담해 드립니다.</p>
+        <dl className="mb-6 grid grid-cols-1 gap-3 rounded-xl bg-white p-4 text-left text-sm sm:grid-cols-2">
+          {contactWindows.map((window) => (
+            <div key={window.label}>
+              <dt className="font-bold text-primary">{window.label}</dt>
+              <dd className="mt-1 text-foreground/70">{window.value}</dd>
+            </div>
+          ))}
+        </dl>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="tel:010-0000-0000" className="flex items-center justify-center gap-2 px-6 py-4 bg-white border border-gray-200 text-gray-800 font-bold rounded-xl hover:bg-gray-50 transition-colors shadow-sm text-base">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
