@@ -17,7 +17,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground pb-[72px] md:pb-0">
         <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-muted">
           <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <Link href="/" className="font-bold text-xl tracking-tight text-primary">
+            <Link href="/" className="font-bold text-xl tracking-tight text-primary" aria-label="길동전문부동산 홈으로 이동">
               길동전문부동산<span className="text-accent">.</span>
             </Link>
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
@@ -52,13 +52,13 @@ export default function RootLayout({
         {/* Mobile Sticky Bottom Bar */}
         <div className="md:hidden fixed bottom-0 left-0 right-0 h-[72px] bg-white border-t border-gray-200 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] z-50 flex p-2 gap-2">
           <a href="tel:010-0000-0000" className="flex-1 flex flex-col items-center justify-center bg-gray-50 rounded-lg text-gray-700 active:bg-gray-100 transition-colors">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mb-1">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mb-1" aria-hidden="true">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
             </svg>
             <span className="text-[10px] font-medium">전화</span>
           </a>
           <a href="https://pf.kakao.com/" target="_blank" rel="noreferrer" className="flex-1 flex flex-col items-center justify-center bg-[#FEE500] rounded-lg text-[#191919] active:bg-[#FADB00] transition-colors">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mb-1">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mb-1" aria-hidden="true">
               <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
             </svg>
             <span className="text-[10px] font-medium">카톡</span>
