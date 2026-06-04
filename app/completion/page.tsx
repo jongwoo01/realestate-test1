@@ -11,6 +11,12 @@ const responseNotes = [
   "추가 확인이 필요한 경우 문자나 전화로 보완 질문을 드립니다.",
 ];
 
+const preparationItems = [
+  "관심 지역과 예산 범위를 정리해 주세요.",
+  "입주 또는 매도 희망 시점을 알려주시면 상담이 빨라집니다.",
+  "등기부등본, 계약서 등 참고 자료가 있으면 함께 준비해 주세요.",
+];
+
 const contactWindows = [
   { label: "평일", value: "오전 10시 - 오후 7시" },
   { label: "토요일", value: "오전 10시 - 오후 4시" },
@@ -54,6 +60,20 @@ export default function CompletionPage() {
             ))}
           </ul>
         </div>
+      </div>
+
+      <div className="mb-8 w-full rounded-2xl border border-primary/10 bg-primary/5 p-6 text-left">
+        <h2 className="mb-4 text-lg font-bold text-primary">상담 준비 체크리스트</h2>
+        <ul className="space-y-3 text-sm text-foreground/75">
+          {preparationItems.map((item) => (
+            <li key={item} className="flex gap-3">
+              <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white text-xs font-bold text-primary shadow-sm" aria-hidden="true">
+                ✓
+              </span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
       </div>
       
       <div className="bg-muted/30 w-full p-8 rounded-2xl border border-muted mb-12">
