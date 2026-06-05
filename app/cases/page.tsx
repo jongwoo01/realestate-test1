@@ -1,41 +1,45 @@
 import Link from "next/link";
 
-export default function CasesPage() {
-  const cases = [
-    { 
-      type: "매도", 
-      propertyType: "아파트",
-      title: "강동구 길동 월드파크 2단지 매도 사례", 
-      result: "3주 만에 계약 완료", 
-      desc: "이사 일정으로 빠른 매도를 원하셨던 고객님. 주변 시세 분석을 통한 합리적인 가격 조정과 길동전문부동산만의 온라인 타겟 홍보로 3주 만에 깔끔하게 매수자를 찾아드렸습니다.",
-      tags: ["빠른매도", "가격조정성공"]
-    },
-    { 
-      type: "월세", 
-      propertyType: "오피스텔",
-      title: "강동구 연남동 연남스테이 월세 사례", 
-      result: "2주 내 임차인 확보", 
-      desc: "공실 기간이 길어져 임대 수익에 차질을 빚고 계셨던 집주인분. 매물 사진을 재촬영하여 깔끔하게 정리하고, 보증금/월세 비율을 소폭 조정하여 2주 만에 든든한 직장인 임차인과 계약을 성사시켰습니다.",
-      tags: ["공실해결", "사진재촬영"]
-    },
-    { 
-      type: "전세", 
-      propertyType: "빌라",
-      title: "강동구 망원동 주택가 전세 사례", 
-      result: "만기일 맞춤 보증금 조정", 
-      desc: "기존 세입자 만기 일정에 맞추어 새로운 세입자를 구해야 하는 상황. 최근 전세가 하락 흐름을 반영하여 주변 시세 비교 후 적정 보증금을 안내해 드렸고, 문의가 급증하여 안전하게 계약을 완료했습니다.",
-      tags: ["만기일정맞춤", "시세분석"]
-    },
-    { 
-      type: "매도", 
-      propertyType: "아파트",
-      title: "강동구 성내동 e편한세상 매도 사례", 
-      result: "조용한 프라이빗 중개", 
-      desc: "동네에 소문내지 않고 조용히 집을 팔고 싶어 하셨던 고객님. 온라인 광고를 일절 진행하지 않고, 저희가 보유한 매수 대기자 네트워크만을 활용하여 원하시는 일정과 가격에 매매를 완료했습니다.",
-      tags: ["비공개진행", "프라이빗중개"]
-    }
-  ];
+const cases = [
+  {
+    type: "매도",
+    propertyType: "아파트",
+    title: "강동구 길동 월드파크 2단지 매도 사례",
+    result: "3주 만에 계약 완료",
+    desc: "이사 일정으로 빠른 매도를 원하셨던 고객님. 주변 시세 분석을 통한 합리적인 가격 조정과 길동전문부동산만의 온라인 타겟 홍보로 3주 만에 깔끔하게 매수자를 찾아드렸습니다.",
+    tags: ["빠른매도", "가격조정성공"],
+    evidence: "일정 제약과 가격 기준을 먼저 확인한 뒤 홍보 전략을 조정",
+  },
+  {
+    type: "월세",
+    propertyType: "오피스텔",
+    title: "강동구 성내동 성내스테이 월세 사례",
+    result: "2주 내 임차인 확보",
+    desc: "공실 기간이 길어져 임대 수익에 차질을 빚고 계셨던 집주인분. 매물 사진을 재촬영하여 깔끔하게 정리하고, 보증금/월세 비율을 소폭 조정하여 2주 만에 든든한 직장인 임차인과 계약을 성사시켰습니다.",
+    tags: ["공실해결", "사진재촬영"],
+    evidence: "공실 원인을 분석하고 사진 품질과 가격 조건을 함께 개선",
+  },
+  {
+    type: "전세",
+    propertyType: "빌라",
+    title: "강동구 둔촌동 주택가 전세 사례",
+    result: "만기일 맞춤 보증금 조정",
+    desc: "기존 세입자 만기 일정에 맞추어 새로운 세입자를 구해야 하는 상황. 최근 전세가 하락 흐름을 반영하여 주변 시세 비교 후 적정 보증금을 안내해 드렸고, 문의가 급증하여 안전하게 계약을 완료했습니다.",
+    tags: ["만기일정맞춤", "시세분석"],
+    evidence: "만기 일정과 주변 시세라는 핵심 요구를 기준으로 계약 조건 검토",
+  },
+  {
+    type: "매도",
+    propertyType: "아파트",
+    title: "강동구 성내동 e편한세상 매도 사례",
+    result: "조용한 프라이빗 중개",
+    desc: "동네에 소문내지 않고 조용히 집을 팔고 싶어 하셨던 고객님. 온라인 광고를 일절 진행하지 않고, 저희가 보유한 매수 대기자 네트워크만을 활용하여 원하시는 일정과 가격에 매매를 완료했습니다.",
+    tags: ["비공개진행", "프라이빗중개"],
+    evidence: "공개 범위를 비기능 요구로 분리해 프라이빗 중개 방식 선택",
+  },
+];
 
+export default function CasesPage() {
   return (
     <div className="py-12 md:py-20 px-6 max-w-5xl mx-auto">
       <div className="text-center mb-16">
@@ -47,11 +51,11 @@ export default function CasesPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {cases.map((c, i) => (
-          <div key={i} className="bg-white border border-muted rounded-2xl overflow-hidden hover:shadow-lg transition-shadow group flex flex-col">
+        {cases.map((c) => (
+          <div key={c.title} className="bg-white border border-muted rounded-2xl overflow-hidden hover:shadow-lg transition-shadow group flex flex-col">
             <div className="h-48 bg-muted flex items-center justify-center relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-100"></div>
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-gray-400 relative z-10">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-gray-400 relative z-10" aria-hidden="true">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                 <circle cx="8.5" cy="8.5" r="1.5"></circle>
                 <polyline points="21 15 16 10 5 21"></polyline>
@@ -67,6 +71,9 @@ export default function CasesPage() {
               <p className="text-2xl font-bold text-accent mb-4">{c.result}</p>
               <p className="text-foreground/80 text-base leading-relaxed mb-6 flex-1">
                 {c.desc}
+              </p>
+              <p className="mb-6 rounded-xl bg-muted/50 p-4 text-sm font-medium text-foreground/70">
+                적용 기준: {c.evidence}
               </p>
               <div className="flex gap-2 mt-auto">
                 {c.tags.map(tag => (
@@ -87,7 +94,7 @@ export default function CasesPage() {
           <p className="text-white/80 mb-8 text-lg">홍길동 대표가 직접 상담하고 최적의 솔루션을 찾아드립니다.</p>
           <Link href="/consultation" className="inline-flex items-center justify-center px-10 py-5 bg-[#C5A880] text-white font-bold rounded-xl hover:bg-[#b09672] transition-colors shadow-lg text-lg gap-2">
             무료 상담 신청하기
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </Link>
         </div>
       </div>

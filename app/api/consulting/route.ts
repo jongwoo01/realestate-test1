@@ -1,6 +1,7 @@
 const SUCCESS_STATUSES = [200, 201, 302];
 const ALLOWED_TRANSACTION_TYPES = ["매도", "전세", "월세"];
 const ALLOWED_PROPERTY_TYPES = ["아파트", "오피스텔", "빌라/주택"];
+const ALLOWED_PREFERRED_TIMINGS = ["가능한 빨리", "1개월 이내", "3개월 이내", "아직 미정"];
 const WEBHOOK_TIMEOUT_MS = 8000;
 const MAX_LENGTH = {
   name: 20,
@@ -14,6 +15,7 @@ type ConsultingRequest = {
   phone?: string;
   transactionType?: string;
   propertyType?: string;
+  preferredTiming?: string;
   location?: string;
   details?: string;
   privacyAgreed?: boolean;
@@ -50,6 +52,7 @@ const validateConsultingRequest = (data: ConsultingRequest) => {
   const phone = normalizeText(data.phone);
   const transactionType = normalizeText(data.transactionType);
   const propertyType = normalizeText(data.propertyType);
+  const preferredTiming = normalizeText(data.preferredTiming);
   const location = normalizeText(data.location);
   const details = normalizeText(data.details);
   const fieldErrors: FieldErrors = {};
@@ -64,6 +67,10 @@ const validateConsultingRequest = (data: ConsultingRequest) => {
 
   if (!ALLOWED_PROPERTY_TYPES.includes(propertyType)) {
     fieldErrors.propertyType = "매물 종류를 다시 선택해주세요.";
+  }
+
+  if (!ALLOWED_PREFERRED_TIMINGS.includes(preferredTiming)) {
+    fieldErrors.preferredTiming = "상담 희망 시점을 다시 선택해주세요.";
   }
 
   if (!name) {
@@ -94,6 +101,7 @@ const validateConsultingRequest = (data: ConsultingRequest) => {
       phone: formatPhone(phone),
       transactionType,
       propertyType,
+      preferredTiming,
       location,
       details,
       privacyAgreed: data.privacyAgreed === true,

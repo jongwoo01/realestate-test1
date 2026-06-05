@@ -5,6 +5,14 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "길동전문부동산 | 강동구 집주인 전문 안심 상담",
   description: "강동구, 성내동, 둔촌동 아파트/오피스텔 매도·전세·월세. 광고만 올리지 않고 직접 꼼꼼히 챙겨드립니다.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "길동전문부동산 | 강동구 집주인 전문 안심 상담",
+    description: "강동구 중심 집주인 상담, 거래 사례, 상담 접수까지 한 흐름으로 제공합니다.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -20,7 +28,9 @@ export default function RootLayout({
             <Link href="/" className="font-bold text-xl tracking-tight text-primary" aria-label="길동전문부동산 홈으로 이동">
               길동전문부동산<span className="text-accent">.</span>
             </Link>
-            <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+            <nav className="hidden md:flex items-center gap-8 text-sm font-medium" aria-label="주요 메뉴">
+              <Link href="/#process" className="hover:text-primary transition-colors">진행 방식</Link>
+              <Link href="/#quality" className="hover:text-primary transition-colors">상담 기준</Link>
               <Link href="/cases" className="hover:text-primary transition-colors">거래 사례</Link>
               <Link href="/consultation" className="hover:text-primary transition-colors">상담 신청</Link>
             </nav>
@@ -49,7 +59,6 @@ export default function RootLayout({
           </div>
         </footer>
 
-        {/* Mobile Sticky Bottom Bar */}
         <div className="md:hidden fixed bottom-0 left-0 right-0 h-[72px] bg-white border-t border-gray-200 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] z-50 flex p-2 gap-2">
           <a href="tel:010-0000-0000" className="flex-1 flex flex-col items-center justify-center bg-gray-50 rounded-lg text-gray-700 active:bg-gray-100 transition-colors">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mb-1" aria-hidden="true">
